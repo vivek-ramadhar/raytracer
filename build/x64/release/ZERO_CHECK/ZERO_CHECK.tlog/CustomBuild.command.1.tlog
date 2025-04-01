@@ -1,0 +1,10 @@
+^C:\USERS\VIVEK\CLIONPROJECTS\UNTITLED\BUILD\CMAKEFILES\2712819EF5D3895CC905C433EEE342DB\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/vivek/CLionProjects/untitled -BC:/Users/vivek/CLionProjects/untitled/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/vivek/CLionProjects/untitled/build/untitled.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
