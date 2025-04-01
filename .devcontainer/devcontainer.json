@@ -1,0 +1,30 @@
+{
+    "name": "C++ Ray Tracer",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools-extension-pack",
+                "ms-vscode.cmake-tools",
+                "xaver.clang-format"
+            ],
+            "settings": {
+                "editor.formatOnSave": true,
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "files.associations": {
+                    "*.h": "cpp",
+                    "*.cc": "cpp"
+                }
+            }
+        }
+    },
+    "forwardPorts": [],
+    "postCreateCommand": "mkdir -p build && cd build && cmake .. && make",
+    "remoteUser": "vscode"
+}
