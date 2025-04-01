@@ -1,5 +1,9 @@
 {
     "name": "C++ Ray Tracer",
+    "hostRequirements": {
+        "cpus": 4,
+        "memory": "8gb"
+    },
     "build": {
         "dockerfile": "Dockerfile"
     },
@@ -7,8 +11,9 @@
         "ghcr.io/devcontainers/features/git:1": {},
         "ghcr.io/devcontainers/features/github-cli:1": {},
         "ghcr.io/devcontainers/features/sshd:1": {
-            "version": "latest"
+            "version":"latest"
         }
+
     },
     "customizations": {
         "vscode": {
