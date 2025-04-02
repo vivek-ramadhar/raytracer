@@ -138,6 +138,19 @@ inline vec3 random_on_hemisphere(const vec3& normal) {
         return -on_unit_sphere; // Invert vector so in the right hemisphere
 }
 
+inline vec3 random_cosine_direction() {
+    auto r1 = random_double();
+    auto r2 = random_double();
+
+    auto phi = 2*pi*r1;
+    auto x = std::cos(phi) * std::sqrt(r2);
+    auto y = std::sin(phi) * std::sqrt(2);
+    auto z = std::sqrt(1-r2);
+
+    return vec3(x, y , z);
+
+}
+
 inline vec3 reflect(const vec3& v, const vec3& n) {
     return v - 2*dot(v,n)*n;
 }
@@ -150,36 +163,5 @@ inline vec3 refract(const vec3& uv, const vec3& n, double etai_over_etat) {
 }
 
 #endif //VEC3_H
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

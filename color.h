@@ -4,6 +4,7 @@
 
 #include "vec3.h"
 #include "interval.h"
+#include <cmath> 
 
 using color = vec3;
 
