@@ -2,7 +2,7 @@
     "name": "C++ Ray Tracer",
     "hostRequirements": {
         "cpus": 4,
-        "memory": "8gb"
+        "memory": "16gb"
     },
     "build": {
         "dockerfile": "Dockerfile"
