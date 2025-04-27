@@ -62,6 +62,8 @@ Or view directly in the terminal with:
 head -n 20 output.ppm
 ```
 
+![render local images](images/cornell1k-800px.png)
+
 ### Modifying the Code
 
 The project is structured as follows:

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
 # Read data from sphere_plot.cc > points.txt
-data = np.loadtxt('points.txt')
+data = np.loadtxt('~/raytracer/points.txt')
 
 # Extract (x,y,z) coords
 x = data[:,0]
