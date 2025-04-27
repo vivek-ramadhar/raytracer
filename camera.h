@@ -13,9 +13,10 @@
 #include <chrono>
 #include <condition_variable>
 #include <mutex>
+#include <string>
 #include <thread>
 #include <vector>
-// #include <omp.h>
+#include <format>
 #include <sstream>
 
 using namespace std::chrono;
@@ -183,6 +184,8 @@ private:
 
     auto start_time = steady_clock::now();
 
+    int seconds(0), minutes(0), hours(0);
+
     while (scanlines_completed.load() < image_height) {
 
       std::this_thread::sleep_for(milliseconds(200)); // update every 200ms
@@ -191,24 +194,21 @@ private:
 
       auto now = steady_clock::now();
 
-      auto elapsed = duration_cast<seconds>(now - start_time).count();
+      auto elapsed = duration_cast<std::chrono::seconds>(now - start_time).count();
+      int hours = static_cast<int>(elapsed/3600);
+      int minutes = static_cast<int>(elapsed/60);
+      int seconds = elapsed%60;
 
       if (current > 0 && elapsed > 0) {
-
-        double scanlines_per_second = static_cast<double>(current) / elapsed;
+        
+        double scanlines_per_second = static_cast<double>(current) / seconds;
 
         int remaining_scanlines = image_height - current;
 
-        int eta_seconds =
-            static_cast<int>(remaining_scanlines / scanlines_per_second);
-
         std::clog << "\rScanlines remaining: " << remaining_scanlines << " ("
-
                   << static_cast<int>((current * 100.0) / image_height) << "%)"
-
-                  << " ETA: " << eta_seconds / 60 << "m" << eta_seconds % 60
-
-                  << "s " << std::flush;
+                  << "\tTime: " << hours << "h" << minutes << "m" << seconds << "s" 
+                  << ' ' << std::flush;
 
       } else {
 
@@ -220,7 +220,12 @@ private:
       last_count = current;
     }
 
-    std::clog << "\rRendering completed";
+    auto end_time = steady_clock::now();
+    auto elapsed_seconds = duration_cast<std::chrono::seconds>(end_time-start_time).count();
+
+
+    std::clog << "\rRendering completed"
+              << "\nTotal time: " << elapsed_seconds;
   }
 
   color ray_color(const ray &r, int depth, const hittable &world,
